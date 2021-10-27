@@ -1,0 +1,8 @@
+sample1 = str(input("Sample Dataset Line1 : "))
+sample2 = str(input("Sample Dataset Line2 : "))
+HD = 0
+
+for i in range(len(sample1)):
+    if sample1[i] != sample2[i]:
+        HD += 1
+print("Sample Output :", HD)
