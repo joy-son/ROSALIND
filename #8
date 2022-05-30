@@ -1,0 +1,15 @@
+#!/usr/bin/env python
+sample = input("File name : ")
+sample = sample + ".txt"
+from codon_table import tCodon
+
+result = ""
+
+r_sample = open(sample, "r").readline()
+for i in range(0, len(r_sample), 3):
+    s = tCodon[r_sample[i : i + 3]]
+    if s == "Stop":
+        break
+    result += s
+
+print(result)
