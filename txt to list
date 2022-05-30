@@ -1,0 +1,23 @@
+#!/usr/bin/env python
+sample = input("File name : ")
+
+# # Soution 1
+with open(sample + ".txt") as r_sample:
+    l_sample = []
+    for line in r_sample:
+        l_sample.append(line.strip())
+r_sample.close()
+
+# # Soution 2
+l_sample = []
+l_sample = open(sample + ".txt").read().splitlines()
+
+# # Soution 3
+l_sample = []
+with open(sample + ".txt") as r_sample:
+    while True:
+        line = r_sample.readline().strip()
+        if not line:
+            break
+        l_sample.append(line)
+r_sample.close()
