@@ -1,0 +1,46 @@
+#!/usr/bin/env python
+sample = input("File name : ")
+r_sample = open(sample + ".txt", "r")
+l_line = ""
+c_line = []
+l_sample = []
+i_seq = ""
+c_seq = []
+consensus = ""
+
+for line in r_sample:
+    if not line.startswith(">"):
+        l_line += line.strip()
+    elif not l_line == "":
+        l_sample.append(l_line)
+        l_line = ""
+l_sample.append(l_line)
+r_sample.close()
+
+for c in range(0, len(l_sample[0][:])):
+    for i in range(0, len(l_sample)):
+        i_seq += l_sample[i][c]
+        if len(i_seq) == len(l_sample):
+            c_seq.append(i_seq)
+            i_seq = ""
+
+A, C, G, T = [], [], [], []
+for s in range(0, len(c_seq)):
+    A.append(c_seq[s].count("A"))
+    C.append(c_seq[s].count("C"))
+    G.append(c_seq[s].count("G"))
+    T.append(c_seq[s].count("T"))
+    if max(A[s], C[s], G[s], T[s]) == A[s]:
+        consensus += "A"
+    elif max(A[s], C[s], G[s], T[s]) == C[s]:
+        consensus += "C"
+    elif max(A[s], C[s], G[s], T[s]) == G[s]:
+        consensus += "G"
+    else:
+        consensus += "T"
+
+print(consensus)
+print("A:", " ".join([str(i) for i in A]))
+print("C:", " ".join([str(i) for i in C]))
+print("G:", " ".join([str(i) for i in G]))
+print("T:", " ".join([str(i) for i in T]))
