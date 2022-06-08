@@ -1,0 +1,24 @@
+#!/usr/bin/env python
+sample = input("Sample Dataset : ")
+sample = sample.split(" ")
+n = int(sample[0])  # month
+m = int(sample[1])  # all rabbits living months
+
+x = [0]  # mature
+y = [1]  # immature
+bunnies = [1, 1]
+months = 1
+
+while months < n:
+    if months < m:
+        x.append(x[-1] + y[-1])
+        y.append(x[-2])
+    elif months == m:
+        x.append(x[-1] + y[-1] - 1)
+        y.append(x[-2])
+    else:
+        x.append(x[-1] + y[-1] - x[-(m + 1)])
+        y.append(x[-2])
+    months += 1
+
+print("Sample Output :", x[-1] + y[-1])
