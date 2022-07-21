@@ -1,0 +1,30 @@
+#!/usr/bin/env python
+sample = input("File name : ")
+r_sample = open(sample + ".txt", "r")
+l_id, l_seq = [], []
+b = ""
+
+for line in r_sample:
+    if line.startswith(">"):
+        a = line.replace(">", "")
+        a = a.replace("\n", "")
+        l_id.append(a)
+        b = ""
+    else:
+        if b == "":
+            b = line.strip()
+            l_seq.append(b)
+        else:
+            b = line.strip()
+            l_seq[-1] = l_seq[-1] + b
+
+s, t = [], []
+for i in range(len(l_id)):
+    for j in range(len(l_seq)):
+        if i != j:
+            if l_seq[i][-3:] == l_seq[j][:3]:
+                s.append(l_id[i])
+                t.append(l_id[j])
+
+for i in range(len(s)):
+    print(s[i] + " " + t[i])
