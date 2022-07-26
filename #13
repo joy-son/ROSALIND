@@ -1,0 +1,27 @@
+#!/usr/bin/env python
+sample = input("Sample Dataset : ")
+offspring = 0
+
+dominance = {
+    "AA_AA": 1,
+    "AA_Aa": 1,
+    "AA_aa": 1,
+    "Aa_Aa": 0.75,
+    "Aa_aa": 0.5,
+    "aa_aa": 0,
+}
+population = {
+    "AA_AA": int(sample.split(" ")[0]),
+    "AA_Aa": int(sample.split(" ")[1]),
+    "AA_aa": int(sample.split(" ")[2]),
+    "Aa_Aa": int(sample.split(" ")[3]),
+    "Aa_aa": int(sample.split(" ")[4]),
+    "aa_aa": int(sample.split(" ")[5]),
+}
+
+for i in dominance:
+    offspring += dominance[i] * int(population[i])
+
+# each couple produces 2 offsprings
+print(offspring * 2)
+
