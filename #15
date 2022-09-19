@@ -1,0 +1,25 @@
+#!/usr/bin/env python
+sample = input("File name : ")
+r_sample = open(sample + ".txt", "r").readline().split()
+k = int(r_sample[0])  # the number of generation
+N = int(r_sample[1])  # the number od AaBb person
+total = 2 ** k  # the number of kth generation's offspring
+
+# Using a Bernoulli trial ; N^total * p(AaBb_possibility)^k * q(!AaBb_possibility)^(total-k)
+# When AaBb ^ AaBb situation, p(AaBb_possibility) = 0.25, q(!AaBb_possibility) = 0.75
+p, q = 0.25, 0.75
+probability = 0
+import math
+
+for i in range(N, total + 1):
+    prob = (
+        (
+            math.factorial(total)
+            / (math.factorial(i) * math.factorial(total - i))
+        )
+        * (p ** i)
+        * (q ** (total - i))
+    )
+    probability += prob
+
+print("Copy to the Answer submission ;", round(probability, 3))
