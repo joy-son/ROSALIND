@@ -6,14 +6,13 @@ m = int(sample[1])  # all rabbits living months
 
 x = [0]  # mature
 y = [1]  # immature
-bunnies = [1, 1]
 months = 1
 
 while months < n:
     if months < m:
         x.append(x[-1] + y[-1])
         y.append(x[-2])
-    elif months == m:
+    elif months >= m:
         x.append(x[-1] + y[-1] - 1)
         y.append(x[-2])
     else:
@@ -21,4 +20,4 @@ while months < n:
         y.append(x[-2])
     months += 1
 
-print("Sample Output :", x[-1] + y[-1])
+print("Copy to the Answer submission ;", x[-1] + y[-1])
