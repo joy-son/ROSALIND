@@ -1,1 +1,16 @@
 #!/usr/bin/env python
+import requests
+
+sample = input("File name : ")
+with open(sample + ".txt") as r_sample:
+    l_seqID = r_sample.read().splitlines()
+url = "https://www.uniprot.org/uniprot/"
+sequences = {}
+
+for proID in l_seqID:
+    gotoURL = url + proID + ".fasta"
+    response = requests.get(gotoURL)
+    sequences[proID] = response.text.split("\n")
+    sequences[proID] = "".join(sequences[proID][1::])
+
+# print(sequences)
